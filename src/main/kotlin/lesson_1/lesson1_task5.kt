@@ -1,20 +1,15 @@
 package org.example.lesson_1
 
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.seconds
-
 
 fun main () {
-    val numOfNumber = 2
-    val numSeconds: Duration = 6480.seconds
-    val numMinutes = numSeconds.toComponents {minutes, seconds, _ ->
-        "Количество минут: ${minutes.toString().padStart(numOfNumber, '0')} мин.:" +
-            "${seconds.toString().padStart(numOfNumber, '0')} сек."}
-    println(numMinutes)
-    val numHours = numSeconds.toComponents {hours, minutes, seconds, _ ->
-        "Количество часов: ${hours.toString().padStart(numOfNumber, '0')} ч.:" +
-            "${minutes.toString().padStart(numOfNumber, '0')} мин.:" +
-            "${seconds.toString().padStart(numOfNumber, '0')} сек."}
-    println(numHours)
+
+    val numSeconds = 6480
+    val numMinutes = String.format("%02d", numSeconds / 60)
+    var secRemains = String.format("%02d", numSeconds % 60)
+    println("Формат (минуты:секунды): $numMinutes мин.:$secRemains сек.")
+    val numHours = String.format("%02d", numSeconds / 3600)
+    val minRemains = String.format("%02d", (numSeconds % 3600) / 60)
+    secRemains = String.format("%02d", (numSeconds % 3600) % 60)
+    println("Формат (часы:минуты:секунды): $numHours ч.:$minRemains мин.:$secRemains сек.")
 
 }
