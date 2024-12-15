@@ -4,12 +4,19 @@ package org.example.lesson_1
 fun main () {
 
     val numSeconds = 6480
-    val numMinutes = String.format("%02d", numSeconds / 60)
-    var secRemains = String.format("%02d", numSeconds % 60)
-    println("Формат (минуты:секунды): $numMinutes мин.:$secRemains сек.")
-    val numHours = String.format("%02d", numSeconds / 3600)
-    val minRemains = String.format("%02d", (numSeconds % 3600) / 60)
-    secRemains = String.format("%02d", (numSeconds % 3600) % 60)
-    println("Формат (часы:минуты:секунды): $numHours ч.:$minRemains мин.:$secRemains сек.")
+
+    val numMinutes = numSeconds / SECONDS_IN_MINUTE
+    var secRemains = numSeconds % SECONDS_IN_MINUTE
+
+    println("%02d мин.:%02d сек.".format(numMinutes, secRemains))
+
+    val numHours = numSeconds / SECONDS_IN_HOUR
+    val minRemains = (numSeconds % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE
+    secRemains = (numSeconds % SECONDS_IN_HOUR) % SECONDS_IN_MINUTE
+
+    println("%02d ч.:%02d мин.:%02d сек.".format(numHours, minRemains, secRemains))
 
 }
+
+const val SECONDS_IN_MINUTE = 60
+const val SECONDS_IN_HOUR = 3600
