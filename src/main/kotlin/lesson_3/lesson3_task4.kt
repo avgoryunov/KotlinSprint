@@ -8,7 +8,7 @@ fun main () {
     var whereNumber = 4
     var strokeNumber = 1
 
-    println("$whereFromLetter$whereFromNumber-$whereLetter$whereNumber; $strokeNumber")
+    println("$whereFromLetter$whereFromNumber-$whereLetter$whereNumber;$strokeNumber")
 
     whereFromLetter = "D"
     whereFromNumber = 2
@@ -16,6 +16,6 @@ fun main () {
     whereNumber = whereFromNumber + 1
     strokeNumber += 1
 
-    println("$whereFromLetter$whereFromNumber-$whereLetter$whereNumber; $strokeNumber")
+    println("$whereFromLetter$whereFromNumber-$whereLetter$whereNumber;$strokeNumber")
 
 }
