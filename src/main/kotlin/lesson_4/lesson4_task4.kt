@@ -3,17 +3,14 @@ package org.example.lesson_4
 fun main () {
 
     val currentDay = 5
-    val firstGroup: Boolean
-    val secondGroup: Boolean
 
-    if (currentDay % 2 == 0) {firstGroup = false; secondGroup = true}
-    else {firstGroup = true; secondGroup = false}
+    val isEven = currentDay % 2 == 0
 
     println("""
-        Упражнения для рук:    $firstGroup
-        Упражнения для ног:    $secondGroup
-        Упражнения для спины:  $secondGroup
-        Упражнения для пресса: $firstGroup
+        Упражнения для рук:    ${!isEven}
+        Упражнения для ног:    ${isEven}
+        Упражнения для спины:  ${isEven}
+        Упражнения для пресса: ${!isEven}
     """.trimIndent())
 
 }
