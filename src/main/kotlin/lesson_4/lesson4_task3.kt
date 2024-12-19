@@ -7,8 +7,10 @@ fun main () {
     val currentAirHumidity: Int = 20
     val currentTimeYear: String = "зима"
 
-    val favorableConditions = currentWeatherSunny == WEATHER_SUNNY && currentPositionAwningOpen == POSITION_AWNING_OPEN
-            && currentAirHumidity == AIR_HUMIDITY && currentTimeYear == TIME_YEAR
+    val favorableConditions = currentWeatherSunny == WEATHER_SUNNY &&
+            currentPositionAwningOpen == POSITION_AWNING_OPEN &&
+            currentAirHumidity == AIR_HUMIDITY &&
+            currentTimeYear != TIME_YEAR
 
     println("Благоприятные ли условия сейчас для роста бобовых? $favorableConditions")
 
@@ -17,4 +19,4 @@ fun main () {
 const val WEATHER_SUNNY = true
 const val POSITION_AWNING_OPEN = true
 const val AIR_HUMIDITY = 20
-const val TIME_YEAR = "не зима"
+const val TIME_YEAR = "зима"
