@@ -8,16 +8,19 @@ fun main () {
 
     print("Введите ингредиент, который хотите заменить: ")
 
-    val searchIngredient = readln()
-    if (searchIngredient in arrayOfIngredients) {
+    val replaceIngredient = readln()
+
+    if (arrayOfIngredients.indexOf(replaceIngredient) > -1) {
 
         print("Введите ингредиент, который хотите добавить: ")
 
         val addIngredient = readln()
-        arrayOfIngredients[arrayOfIngredients.indexOf(searchIngredient)] = addIngredient
+        arrayOfIngredients[arrayOfIngredients.indexOf(replaceIngredient)] = addIngredient
 
         println("Готово! Вы сохранили следующий список:")
 
         for (i in arrayOfIngredients) println("Ингредиент ${arrayOfIngredients.indexOf(i) + 1}: $i")
-    } else println("Такого ингредиента в рецепте нет")
+    } else {
+        println("Такого ингредиента в рецепте нет")
+    }
 }
