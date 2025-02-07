@@ -4,23 +4,24 @@ fun main () {
 
     val arrayOfIngredients = arrayOf("курица", "капуста", "помидор", "сыр", "хлеб", "соль", "масло", "перец", "чеснок", "майонез")
 
-    for (i in arrayOfIngredients) println("Ингредиент ${arrayOfIngredients.indexOf(i) + 1}: $i")
+    for (i in arrayOfIngredients) {
+        println("Ингредиент ${arrayOfIngredients.indexOf(i) + 1}: $i")
+    }
 
     print("Введите ингредиент, который хотите заменить: ")
 
-    val replaceIngredient = readln()
+    val replaceIngredient = arrayOfIngredients.indexOf(readln())
 
-    if (arrayOfIngredients.indexOf(replaceIngredient) > -1) {
-
+    if (replaceIngredient == -1) println("Такого ингредиента в рецепте нет")
+    else {
         print("Введите ингредиент, который хотите добавить: ")
 
-        val addIngredient = readln()
-        arrayOfIngredients[arrayOfIngredients.indexOf(replaceIngredient)] = addIngredient
+        arrayOfIngredients[replaceIngredient] = readln()
 
         println("Готово! Вы сохранили следующий список:")
 
-        for (i in arrayOfIngredients) println("Ингредиент ${arrayOfIngredients.indexOf(i) + 1}: $i")
-    } else {
-        println("Такого ингредиента в рецепте нет")
+        for (i in arrayOfIngredients) {
+            println("Ингредиент ${arrayOfIngredients.indexOf(i) + 1}: $i")
+        }
     }
 }
