@@ -15,10 +15,12 @@ fun main() {
 }
 
 fun lengthValidation(loginVal: String, passwordVal: String): Boolean {
-    return if (loginVal.length < 4 || passwordVal.length < 4) {
+    return if (loginVal.length < NUMBER_OF_CHARACTERS || passwordVal.length < NUMBER_OF_CHARACTERS) {
 
         println("Логин или пароль недостаточно длинные")
         return false
     }
     else true
 }
+
+const val NUMBER_OF_CHARACTERS = 4
