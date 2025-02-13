@@ -14,11 +14,11 @@ fun passwordGenerator(numberOfCharacters: Int): String {
     val passwordList: MutableList<String> = mutableListOf()
 
     val number = (0..9)
-    val characters = listOf("!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", " ")
+    val characters = (32..47)
 
     for (i in 1 .. numberOfCharacters) {
         if ((i % 2) == 1) passwordList.add(number.random().toString())
-        else passwordList.add(characters.random())
+        else passwordList.add(characters.random().toChar().toString())
     }
     return passwordList.joinToString("")
 }
