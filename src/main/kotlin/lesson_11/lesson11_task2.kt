@@ -7,8 +7,9 @@ class User2(
     val email: String,
     private var bio: Boolean = false,
 ) {
-    fun userDataOutput() {
-        val userData = """
+
+    fun outputData() {
+        println("""
         |
         |Данные пользователя:
         |id: $id
@@ -16,43 +17,23 @@ class User2(
         |password: $password
         |email: $email
         |bio: $bio
-    """.trimMargin()
-
-        println(userData)
+    """.trimMargin())
     }
 
-    fun readingAndWritingText() {
-        print("Значение bio. Введите \"true\" или \"false\": ")
+    fun setBio() {
+        print("Укажите значение bio. Введите \"true\" или \"false\": ")
         bio = readln().toBoolean()
     }
 
-    fun changingThePassword() {
+    fun changePassword() {
 
-        do {
-            print("Введите текущий пароль: ")
-            val passwordIn = readln()
+        print("Введите текущий пароль: ")
 
-            if (passwordIn == password) {
-
-                print("Введите новый пароль: ")
-                password = readln()
-
-                println("Пароль изменен.")
-                return
-            }
-            else {
-                print("Текущий пароль введен неверно. Желаете повторить? " +
-                        "\nВведите \"Да\" или \"Нет\": ")
-                var answerIn = readln()
-
-                if (answerIn == "Нет") return
-
-                while (answerIn != "Да") {
-                    print("Неверные символы. Введите \"Да\" или \"Нет\": ")
-                    answerIn = readln()
-                }
-            }
-        } while (passwordIn != password)
+        if (readln() == password) {
+            print("Введите новый пароль: ")
+            password = readln()
+            println("Пароль изменен")
+        } else println("Введен неверный пароль")
     }
 }
 
@@ -64,7 +45,7 @@ fun main() {
         email = "ema21",
     )
 
-    user21.readingAndWritingText()
-    user21.changingThePassword()
-    user21.userDataOutput()
+    user21.setBio()
+    user21.changePassword()
+    user21.outputData()
 }
