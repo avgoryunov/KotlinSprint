@@ -3,51 +3,53 @@ package org.example.lesson_11
 class Room(
     val cover: String,
     val title: String,
-    private val listOfAvatar: MutableList<String> = mutableListOf(),
-    private val listOfNickName: MutableList<String> = mutableListOf(),
-    private val listOfStatus: MutableList<String> = mutableListOf(),
-) {
+    private val listOfParticipant: MutableList<Any> = mutableListOf(),
+    ) {
 
     fun addParticipant(participant: Participant) {
-        listOfAvatar.add(participant.avatar)
-        listOfNickName.add(participant.nickName)
-        listOfStatus.add(participant.status)
+        listOfParticipant.add(participant.listOfProperties)
     }
 
     fun setStatusTalk(participant: Participant) {
         participant.status = "Разговаривает"
-        listOfStatus[listOfNickName.indexOf(participant.nickName)] = participant.status
+        participant.listOfProperties[2] = participant.status
+        listOfParticipant[listOfParticipant.indexOf(participant.listOfProperties)]
     }
 
     fun setStatusMicrophoneTurnedOff(participant: Participant) {
         participant.status = "Микрофон выключен"
-        listOfStatus[listOfNickName.indexOf(participant.nickName)] = participant.status
+        participant.listOfProperties[2] = participant.status
+        listOfParticipant[listOfParticipant.indexOf(participant.listOfProperties)]
     }
 
     fun setStatusUserIsMuted(participant: Participant) {
         participant.status = "Пользователь заглушен"
-        listOfStatus[listOfNickName.indexOf(participant.nickName)] = participant.status
+        participant.listOfProperties[2] = participant.status
+        listOfParticipant[listOfParticipant.indexOf(participant.listOfProperties)]
     }
 
     fun outputDataRoom() {
-        println("""
+        println(
+            """
         |
         |Карточка комнаты:
         |Обложка: $cover
         |Название: $title
         |Участники: 
-    """.trimMargin())
+    """.trimMargin()
+        )
 
-        for (i in 0..<listOfAvatar.size) {
-            println("${i+1}. Аватар - ${listOfAvatar[i]}, Псевдоним - ${listOfNickName[i]}, Статус - ${listOfStatus[i]}")
+        for (i in listOfParticipant.indices) {
+            println("${i+1}. ${listOfParticipant[i]}")
         }
     }
 }
 
 class Participant(
     val avatar: String,
-    var nickName: String,
+    val nickName: String,
     var status: String,
+    var listOfProperties: MutableList<String> = mutableListOf(avatar, nickName, status)
 )
 
 fun main() {
