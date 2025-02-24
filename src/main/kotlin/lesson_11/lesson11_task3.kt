@@ -3,53 +3,41 @@ package org.example.lesson_11
 class Room(
     val cover: String,
     val title: String,
-    private val listOfParticipant: MutableList<Any> = mutableListOf(),
-    ) {
+    private val listOfParticipant: MutableList<Participant> = mutableListOf(),
+) {
 
     fun addParticipant(participant: Participant) {
-        listOfParticipant.add(participant.listOfProperties)
+        listOfParticipant.add(participant)
     }
 
-    fun setStatusTalk(participant: Participant) {
-        participant.status = "Разговаривает"
-        participant.listOfProperties[2] = participant.status
-        listOfParticipant[listOfParticipant.indexOf(participant.listOfProperties)]
-    }
-
-    fun setStatusMicrophoneTurnedOff(participant: Participant) {
-        participant.status = "Микрофон выключен"
-        participant.listOfProperties[2] = participant.status
-        listOfParticipant[listOfParticipant.indexOf(participant.listOfProperties)]
-    }
-
-    fun setStatusUserIsMuted(participant: Participant) {
-        participant.status = "Пользователь заглушен"
-        participant.listOfProperties[2] = participant.status
-        listOfParticipant[listOfParticipant.indexOf(participant.listOfProperties)]
+    fun setStatus(nickName: String, status: String) {
+        for (i in listOfParticipant.indices) {
+            if (listOfParticipant[i].nickName.indexOf(nickName) == 0) {
+                listOfParticipant[i].status = status
+                return
+            }
+        }
     }
 
     fun outputDataRoom() {
-        println(
-            """
-        |
-        |Карточка комнаты:
-        |Обложка: $cover
-        |Название: $title
-        |Участники: 
-    """.trimMargin()
-        )
+        println("""
+            |Карточка комнаты:
+            |$cover
+            |$title
+            |Участники
+        """.trimMargin())
 
         for (i in listOfParticipant.indices) {
-            println("${i+1}. ${listOfParticipant[i]}")
+            println("${i+1}. ${listOfParticipant[i].avatar}, ${listOfParticipant[i].nickName}, ${listOfParticipant[i].status}")
         }
+        println("")
     }
 }
 
-class Participant(
+data class Participant(
     val avatar: String,
     val nickName: String,
     var status: String,
-    var listOfProperties: MutableList<String> = mutableListOf(avatar, nickName, status)
 )
 
 fun main() {
@@ -82,8 +70,8 @@ fun main() {
     room1.addParticipant(participant3)
     room1.outputDataRoom()
 
-    room1.setStatusTalk(participant2)
-    room1.setStatusMicrophoneTurnedOff(participant3)
-    room1.setStatusUserIsMuted(participant1)
+    room1.setStatus(nickName = "Участник1", status = "Пользователь заглушен")
+    room1.setStatus(nickName = "Участник2", status = "Разговаривает")
+    room1.setStatus(nickName = "Участник3", status = "Микрофон выключен")
     room1.outputDataRoom()
 }
