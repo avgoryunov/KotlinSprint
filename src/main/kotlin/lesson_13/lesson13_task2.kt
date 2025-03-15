@@ -7,8 +7,7 @@ data class Subscriber1(
 ) {
 
     fun outputToTheConsole() {
-        if (company != null) println("- Имя: $name\n- Номер: $phoneNumber\n- Компания: $company\n")
-        else println("- Имя: $name\n- Номер: $phoneNumber\n- Компания: <не указано>\n")
+        println("- Имя: $name\n- Номер: $phoneNumber\n- Компания: ${company ?: "<не указано>"}\n")
     }
 }
 
