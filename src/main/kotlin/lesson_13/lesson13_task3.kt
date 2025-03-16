@@ -9,9 +9,9 @@ class PhoneDirectory2(
     }
 
     fun outputToTheConsole() {
-        val listCompany: MutableList<String> = mutableListOf()
-        for (i in listSubscriber.indices) listCompany.add(listSubscriber[i].company ?: "<не указано>")
-        println(listCompany.joinToString(", "))
+        val listCompany: MutableList<String?> = mutableListOf()
+        for (i in listSubscriber.indices) listCompany.add(listSubscriber[i].company)
+        println(listCompany.mapNotNull { it }.joinToString(", "))
     }
 }
 
