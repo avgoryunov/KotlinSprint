@@ -14,7 +14,12 @@ fun main() {
         if (nameIn.isEmpty()) nameIn = null.toString()
 
         print("Введите номер: ")
-        val phoneNumberIn = readln().toLongOrNull()
+        var phoneNumberIn: Long? = null
+        try {
+            phoneNumberIn = readln().toLong()
+        } catch (e: NumberFormatException) {
+            println("Произошла ошибка: ${e::class.simpleName} - ${e.message}")
+        }
 
         print("Введите компанию: ")
         var companyIn = readln()
@@ -28,12 +33,4 @@ fun main() {
         )
         println("$subscriber4\n")
     }
-    println(
-        "Exception in thread \"main\" java.lang.NumberFormatException: For input string: \"22222222222й\"\n" +
-                "\tat java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)\n" +
-                "\tat java.base/java.lang.Long.parseLong(Long.java:618)\n" +
-                "\tat java.base/java.lang.Long.parseLong(Long.java:722)\n" +
-                "\tat org.example.lesson_13.Lesson13_task5Kt.main(lesson13_task5.kt:17)\n" +
-                "\tat org.example.lesson_13.Lesson13_task5Kt.main(lesson13_task5.kt)"
-    )
 }
