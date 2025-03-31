@@ -1,27 +1,24 @@
 package org.example.lesson_15
 
-interface CrucianAction {
+interface SwimAction {
     fun swim()
 }
 
-interface SeagullAction {
+interface WalkAction {
     fun walk()
+}
+
+interface FlyAction {
     fun fly()
 }
 
-interface DuckAction {
-    fun swim()
-    fun walk()
-    fun fly()
-}
-
-class Crucian: CrucianAction {
+class Crucian: SwimAction {
     override fun swim() {
         println("Карась может плавать под водой")
     }
 }
 
-class Seagull: SeagullAction {
+class Seagull: WalkAction, FlyAction {
     override fun walk() {
         println("Чайка может ходить")
     }
@@ -31,7 +28,7 @@ class Seagull: SeagullAction {
     }
 }
 
-class Duck: DuckAction {
+class Duck: SwimAction, WalkAction, FlyAction {
     override fun swim() {
         println("Утка может плавать на поверхности воды")
     }
