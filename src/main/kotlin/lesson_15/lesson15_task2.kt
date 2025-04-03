@@ -1,33 +1,41 @@
 package org.example.lesson_15
 
-interface Tem {
-    var temperature : Int
+abstract class WeatherStationStats {
+    var currentDate: String = ""
+    abstract fun info()
 }
 
-interface Pre {
-    var precipitationAmount : Int
+data object Temperature : WeatherStationStats() {
+    var temperature: Int = 0
+
+    override fun info() {
+        return println("Текущая дата: $currentDate, температура: $temperature °С")
+    }
 }
 
-abstract class WeatherStationStats(override var temperature: Int, override var precipitationAmount: Int) : Tem, Pre
+data object PrecipitationAmount : WeatherStationStats() {
+    var precipitationAmount: Int = 0
 
-data object Temperature : Tem {
-    override var temperature: Int = 18
+    override fun info() {
+        return println("Текущая дата: $currentDate, количество осадков: $precipitationAmount мм")
+    }
 }
 
-data object PrecipitationAmount : Pre {
-    override var precipitationAmount: Int = 5
-}
-
-class WeatherServer(temperature: Int, precipitationAmount: Int) : WeatherStationStats(temperature, precipitationAmount) {
-
-    fun info() {
-        println("Температура ${temperature} \u00B0С, осадки ${precipitationAmount} мм")
+class WeatherServer {
+    fun sendMessage(weatherParameter: WeatherStationStats) {
+        if (weatherParameter == Temperature) weatherParameter.info()
+        else weatherParameter.info()
     }
 }
 
 fun main() {
-    var weatherServer1 = WeatherServer(16, 10)
-    weatherServer1.info()
-    weatherServer1 = WeatherServer(11, 7)
-    weatherServer1.info()
+    val weatherServer1 = WeatherServer()
+
+    Temperature.currentDate = "03.04.2025"
+    Temperature.temperature = 18
+    PrecipitationAmount.currentDate = "03.04.2025"
+    PrecipitationAmount.precipitationAmount = 8
+
+    weatherServer1.sendMessage(Temperature)
+    weatherServer1.sendMessage(PrecipitationAmount)
 }
