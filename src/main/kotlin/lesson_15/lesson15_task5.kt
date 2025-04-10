@@ -1,41 +1,23 @@
 package org.example.lesson_15
 
 interface CarsMovements {
-    val carName: String
-
-    fun vehicleMovement() {
-        println("\"$carName\" Выполнено передвижение автомобиля")
-    }
+    fun vehicleMovement()
 }
 
 interface PassengerTransportation {
-    val carName: String
     val currentNumberOfPeopleTransported: Int
-
-    fun passengerLoading() {
-        println("\"$carName\" Выполнена посадка $currentNumberOfPeopleTransported пассажиров")
-    }
-
-    fun passengerUnloading() {
-        println("\"$carName\" Выполнена высадка $currentNumberOfPeopleTransported пассажиров")
-    }
+    fun passengerLoading()
+    fun passengerUnloading()
 }
 
 interface CargoTransportation {
     val currentAmountOfCargoTransported: Int
-    val carName: String
-
-    fun cargoLoading() {
-        println("\"$carName\" Выполнена $currentAmountOfCargoTransported кг загрузка груза")
-    }
-
-    fun cargoUnloading() {
-        println("\"$carName\" Выполнена разгрузка $currentAmountOfCargoTransported кг груза")
-    }
+    fun cargoLoading()
+    fun cargoUnloading()
 }
 
 class PassengerCar(
-    override val carName: String,
+    private val carName: String,
     private var _currentNumberOfPeopleTransported: Int,
 ) : CarsMovements, PassengerTransportation {
 
@@ -47,10 +29,22 @@ class PassengerCar(
             }
             _currentNumberOfPeopleTransported = value
         }
+
+    override fun vehicleMovement() {
+        println("\"$carName\" Выполнено передвижение автомобиля")
+    }
+
+    override fun passengerLoading() {
+        println("\"$carName\" Выполнена посадка $currentNumberOfPeopleTransported пассажиров")
+    }
+
+    override fun passengerUnloading() {
+        println("\"$carName\" Выполнена высадка $currentNumberOfPeopleTransported пассажиров")
+    }
 }
 
-class CargoTruck (
-    override var carName: String,
+class CargoTruck(
+    private val carName: String,
     private var _currentNumberOfPeopleTransported: Int,
     private var _currentAmountOfCargoTransported: Int,
 ) : CarsMovements, PassengerTransportation, CargoTransportation {
@@ -72,6 +66,26 @@ class CargoTruck (
             }
             _currentAmountOfCargoTransported = value
         }
+
+    override fun vehicleMovement() {
+        println("\"$carName\" Выполнено передвижение автомобиля")
+    }
+
+    override fun passengerLoading() {
+        println("\"$carName\" Выполнена посадка $currentNumberOfPeopleTransported пассажиров")
+    }
+
+    override fun passengerUnloading() {
+        println("\"$carName\" Выполнена высадка $currentNumberOfPeopleTransported пассажиров")
+    }
+
+    override fun cargoLoading() {
+        println("\"$carName\" Выполнена загрузка $currentAmountOfCargoTransported кг груза")
+    }
+
+    override fun cargoUnloading() {
+        println("\"$carName\" Выполнена разгрузка $currentAmountOfCargoTransported кг груза")
+    }
 }
 
 fun main() {
