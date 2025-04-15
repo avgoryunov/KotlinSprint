@@ -5,8 +5,12 @@ class Order(
     private var readyStatus: String,
 ) {
 
-    fun changeTheStatus(currentStatus: String) {
+    private fun changeTheStatus(currentStatus: String) {
         readyStatus = currentStatus
+    }
+
+    fun setStatus(currentStatus: String) {
+        changeTheStatus(currentStatus)
     }
 
     fun getStatus() {
@@ -15,7 +19,7 @@ class Order(
 }
 
 fun acceptANewStatus(order: Order, currentStatus: String) {
-    order.changeTheStatus(currentStatus)
+    order.setStatus(currentStatus)
 }
 
 fun main() {
