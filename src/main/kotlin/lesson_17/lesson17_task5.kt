@@ -11,21 +11,11 @@ class User(
             println("Логин успешно изменен")
         }
 
-    private val passwordIn: String = password
-
-    var password: String
-        get() {
-            var hiddenPassword = ""
-
-            for (i in 0..<passwordIn.length - 1) {
-                hiddenPassword += "*"
-            }
-
-            return hiddenPassword
-        }
-
+    var password: String = password
+        get() = "*".repeat(field.length)
         set(value) {
             println("Вы не можете изменить пароль")
+            field = password
         }
 
     fun info() {
