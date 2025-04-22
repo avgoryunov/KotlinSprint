@@ -15,7 +15,6 @@ class User(
         get() = "*".repeat(field.length)
         set(value) {
             println("Вы не можете изменить пароль")
-            field = password
         }
 
     fun info() {
