@@ -1,20 +1,24 @@
 package org.example.lesson_18
 
-open class Dice {
-    open val nSidedDice: Int = 4
-    private val randomValue: Int by lazy { (1 .. nSidedDice).random() }
+abstract class Dice {
+    abstract val facesNumber: Int
 
-    fun rollTheDice() = "При броске кости с $nSidedDice гранями выпало значение: $randomValue"
+    fun rollTheDice() : String {
+        val randomValue: Int = (1..facesNumber).random()
+        return "При броске кости с $facesNumber гранями выпало значение: $randomValue"
+    }
 }
 
-class FourSidedDice : Dice()
+class FourSidedDice : Dice() {
+    override val facesNumber: Int = 4
+}
 
 class SixSidedDice : Dice() {
-    override val nSidedDice: Int = 6
+    override val facesNumber: Int = 6
 }
 
 class EightSidedDice : Dice() {
-    override val nSidedDice: Int = 8
+    override val facesNumber: Int = 8
 }
 
 fun main() {
