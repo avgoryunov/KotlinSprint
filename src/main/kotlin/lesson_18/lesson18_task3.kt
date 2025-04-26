@@ -1,11 +1,10 @@
 package org.example.lesson_18
 
-open class Animals(
-    open val nickname: String,
+abstract class Animals (
+    val nickname: String,
 ) {
-    open fun toEat() = ""
-
-    open fun toSleep() = "$nickname -> спит"
+    abstract fun toEat(): String
+    fun toSleep() = "$nickname -> спит"
 }
 
 class Fox (
@@ -36,18 +35,8 @@ fun main() {
 
     val list1 = listOf<Animals>(fox1, dog1, cat1)
 
-    eatAllAnimals(list1)
-    sleepAllAnimals(list1)
-}
-
-fun eatAllAnimals(animals1: List<Animals>) {
-    animals1.forEach {
+    list1.forEach {
         println(it.toEat())
-    }
-}
-
-fun sleepAllAnimals(animals1: List<Animals>) {
-    animals1.forEach {
         println(it.toSleep())
     }
 }
